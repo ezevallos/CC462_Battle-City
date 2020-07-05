@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,43 +23,7 @@ public class ServerThread extends Thread{
     int colision_X=0;
     int colision_Y=0;
     private List<ServerJugador> jugadores;
-    
-    
-    private static String prueba1 = 
-            "################################\n" +
-            "#      ***                     #\n" +
-            "###*####  ##**##               #\n" +
-            "#                              #\n" +
-            "#                              #\n" +
-            "#                              #\n" +
-            "#                              #\n" +
-            "#                              #\n" +
-            "#                              #\n" +
-            "#                              #\n" +
-            "#                              #\n" +
-            "#                              #\n" +
-            "#                              #\n" +
-            "#                              #\n" +
-            "#                              #\n" +
-            "################################";
-    private static String prueba2 = 
-            "################################\n" +
-            "#      ***                     #\n" +
-            "###*####  ##**##               #\n" +
-            "#                              #\n" +
-            "#                              #\n" +
-            "#                              #\n" +
-            "#             %                #\n" +
-            "#             %                #\n" +
-            "#             %                #\n" +
-            "#                              #\n" +
-            "#                              #\n" +
-            "#         $$$$                 #\n" +
-            "#      $                       #\n" +
-            "#      $                       #\n" +
-            "#                              #\n" +
-            "################################";
-    
+    private static int[][] spawningArea = {{1,1},{1,30},{14,1},{14,30}};
     
     private CargarMapa mapaInicial = new CargarMapa();
     char[][] mapaCaracter = mapaInicial.getMatrizMapa();
@@ -109,42 +74,6 @@ public class ServerThread extends Thread{
                 while(true){
                     total = jugadores.size();
                     List<ServerJugador> gamer_eliminado=new ArrayList<>();
-                    /*
-                    System.out.println("total: "+total);
-                    for(int i = 0; i < total; i++){
-                        try{
-                            jugadores.get(i).enviar(prueba1);
-                            CoreJuego(jugadores.get(i));
-                        }catch (IOException ex) {
-                            //ex.printStackTrace();
-                        }
-                    }*/
-                    
-                    
-                    
-                    /*
-                    for(int i = 0; i < total; i++){
-                        try{
-                            jugadores.get(i).enviar(prueba1);
-                        }catch (IOException ex) {
-                            //ex.printStackTrace();
-                        }
-                    }
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException ex) {}
-                    total = jugadores.size();
-                    System.out.println("total: "+total);
-                    for(int i = 0; i < total; i++){
-                        try {
-                            jugadores.get(i).enviar(prueba2);
-                        } catch (IOException ex) {
-                            //ex.printStackTrace();
-                        }
-                    }
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException ex) {}*/
                     
                     try {
                         Thread.sleep(100);
@@ -181,6 +110,11 @@ public class ServerThread extends Thread{
             }
         });
         hilo.start();
+    }
+    
+    public static int[] getSpawnPos(){
+        int i = (int) (Math.random() * 4);
+        return spawningArea[i];
     }
     
     public void CoreJuego(ServerJugador gamer){
@@ -272,113 +206,110 @@ public class ServerThread extends Thread{
                 
                 //La bala es lanzada hacia arriba
                 if(direct=='↑'){
-                    if(mapaCaracter[b_postX-1][b_postY]==' '){
-                        //if( b_postX!=gamer.postX && b_postY!=gamer.postY)
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        mapaCaracter[b_postX-1][b_postY]='°';
-                        gamer.balas.get(i).setBala_postX(b_postX-1);
-                        
-                    }
-                    
-                    else if(mapaCaracter[b_postX-1][b_postY]=='*'){
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        mapaCaracter[b_postX-1][b_postY]=' ';
-                        gamer.balas.get(i).setEstado_bala(false);
-                        a_remover.add(gamer.balas.get(i));
-                    }
-                    
-                    else if(mapaCaracter[b_postX-1][b_postY]=='#'){
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        //mapaCaracter[b_postX-1][b_postY]=' ';
-                        gamer.balas.get(i).setEstado_bala(false);
-                        a_remover.add(gamer.balas.get(i));
-                    }
-                    
-                    else if(mapaCaracter[b_postX-1][b_postY]=='↑' ||
-                            mapaCaracter[b_postX-1][b_postY]=='↓'||
-                            mapaCaracter[b_postX-1][b_postY]=='→'||
-                            mapaCaracter[b_postX-1][b_postY]=='←'){
-                        
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        mapaCaracter[b_postX-1][b_postY]=' ';
-                        gamer.balas.get(i).setEstado_bala(false);
-                        a_remover.add(gamer.balas.get(i));
-                        this.colision_X=b_postX-1;
-                        this.colision_Y=b_postY;
+                    switch (mapaCaracter[b_postX-1][b_postY]) {
+                        case ' ':
+                            //if( b_postX!=gamer.postX && b_postY!=gamer.postY)
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX-1][b_postY]='°';
+                            gamer.balas.get(i).setBala_postX(b_postX-1);
+                            break;
+                        case '*':
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX-1][b_postY]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
+                            break;
+                        case '#':
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            //mapaCaracter[b_postX-1][b_postY]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
+                            break;
+                        case '↑':
+                        case '↓':
+                        case '→':
+                        case '←':
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX-1][b_postY]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
+                            this.colision_X=b_postX-1;
+                            this.colision_Y=b_postY;
+                            break;
+                        default:
+                            break;
                     }
                     
                 }
                 
                 //La bala es lanzada hacia abajo
                 if(direct=='↓'){
-                    if(mapaCaracter[b_postX+1][b_postY]==' '){
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        mapaCaracter[b_postX+1][b_postY]='°';
-                        gamer.balas.get(i).setBala_postX(b_postX+1);
-                        
-                    }
-                    
-                    else if(mapaCaracter[b_postX+1][b_postY]=='*'){
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        mapaCaracter[b_postX+1][b_postY]=' ';
-                        gamer.balas.get(i).setEstado_bala(false);
-                        a_remover.add(gamer.balas.get(i));
-                    }
-                    
-                    else if(mapaCaracter[b_postX+1][b_postY]=='#'){
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        gamer.balas.get(i).setEstado_bala(false);
-                        a_remover.add(gamer.balas.get(i));
-                    }
-                    
-                    else if(mapaCaracter[b_postX+1][b_postY]=='↑' ||
-                            mapaCaracter[b_postX+1][b_postY]=='↓'||
-                            mapaCaracter[b_postX+1][b_postY]=='→'||
-                            mapaCaracter[b_postX+1][b_postY]=='←'){
-                        
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        mapaCaracter[b_postX+1][b_postY]=' ';
-                        gamer.balas.get(i).setEstado_bala(false);
-                        a_remover.add(gamer.balas.get(i));
-                        this.colision_X=b_postX+1;
-                        this.colision_Y=b_postY;
+                    switch (mapaCaracter[b_postX+1][b_postY]) {
+                        case ' ':
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX+1][b_postY]='°';
+                            gamer.balas.get(i).setBala_postX(b_postX+1);
+                            break;
+                        case '*':
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX+1][b_postY]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
+                            break;
+                        case '#':
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
+                            break;
+                        case '↑':
+                        case '↓':
+                        case '→':
+                        case '←':
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX+1][b_postY]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
+                            this.colision_X=b_postX+1;
+                            this.colision_Y=b_postY;
+                            break;
+                        default:
+                            break;
                     }
                     
                 }
                 
                 //La bala es lanzada hacia la izquierda
                 if(direct=='←'){
-                    if(mapaCaracter[b_postX][b_postY-1]==' '){
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        mapaCaracter[b_postX][b_postY-1]='°';
-                        gamer.balas.get(i).setBala_postY(b_postY-1);
-                        
-                    }
-                    
-                    else if(mapaCaracter[b_postX][b_postY-1]=='*'){
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        mapaCaracter[b_postX][b_postY-1]=' ';
-                        gamer.balas.get(i).setEstado_bala(false);
-                        a_remover.add(gamer.balas.get(i));
-                    }
-                    
-                    else if(mapaCaracter[b_postX][b_postY-1]=='#'){
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        gamer.balas.get(i).setEstado_bala(false);
-                        a_remover.add(gamer.balas.get(i));
-                    }
-                    
-                    else if(mapaCaracter[b_postX][b_postY-1]=='↑' ||
-                            mapaCaracter[b_postX][b_postY-1]=='↓'||
-                            mapaCaracter[b_postX][b_postY-1]=='→'||
-                            mapaCaracter[b_postX][b_postY-1]=='←'){
-                        
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        mapaCaracter[b_postX][b_postY-1]=' ';
-                        gamer.balas.get(i).setEstado_bala(false);
-                        a_remover.add(gamer.balas.get(i));
-                        this.colision_X=b_postX;
-                        this.colision_Y=b_postY-1;
+                    switch (mapaCaracter[b_postX][b_postY-1]) {
+                        case ' ':
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX][b_postY-1]='°';
+                            gamer.balas.get(i).setBala_postY(b_postY-1);
+                            break;
+                        case '*':
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX][b_postY-1]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
+                            break;
+                        case '#':
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
+                            break;
+                        case '↑':
+                        case '↓':
+                        case '→':
+                        case '←':
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX][b_postY-1]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
+                            this.colision_X=b_postX;
+                            this.colision_Y=b_postY-1;
+                            break;
+                        default:
+                            break;
                     }
                     
                 }
@@ -386,37 +317,36 @@ public class ServerThread extends Thread{
                 
                 //lanzado bala hacia la derecha
                 if(direct=='→'){
-                    if(mapaCaracter[b_postX][b_postY+1]==' '){
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        mapaCaracter[b_postX][b_postY+1]='°';
-                        gamer.balas.get(i).setBala_postY(b_postY+1);
-                        
-                    }
-                    
-                    else if(mapaCaracter[b_postX][b_postY+1]=='*'){
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        mapaCaracter[b_postX][b_postY+1]=' ';
-                        gamer.balas.get(i).setEstado_bala(false);
-                        a_remover.add(gamer.balas.get(i));
-                    }
-                    
-                    else if(mapaCaracter[b_postX][b_postY+1]=='#'){
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        gamer.balas.get(i).setEstado_bala(false);
-                        a_remover.add(gamer.balas.get(i));
-                    }
-                    
-                    else if(mapaCaracter[b_postX][b_postY+1]=='↑' ||
-                            mapaCaracter[b_postX][b_postY+1]=='↓'||
-                            mapaCaracter[b_postX][b_postY+1]=='→'||
-                            mapaCaracter[b_postX][b_postY+1]=='←'){
-                        
-                        mapaCaracter[b_postX][b_postY]=' ';
-                        mapaCaracter[b_postX][b_postY+1]=' ';
-                        gamer.balas.get(i).setEstado_bala(false);
-                        a_remover.add(gamer.balas.get(i));
-                        this.colision_X=b_postX;
-                        this.colision_Y=b_postY+1;
+                    switch (mapaCaracter[b_postX][b_postY+1]) {
+                        case ' ':
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX][b_postY+1]='°';
+                            gamer.balas.get(i).setBala_postY(b_postY+1);
+                            break;
+                        case '*':
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX][b_postY+1]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
+                            break;
+                        case '#':
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
+                            break;
+                        case '↑':
+                        case '↓':
+                        case '→':
+                        case '←':
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX][b_postY+1]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
+                            this.colision_X=b_postX;
+                            this.colision_Y=b_postY+1;
+                            break;
+                        default:
+                            break;
                     }
                     
                 }

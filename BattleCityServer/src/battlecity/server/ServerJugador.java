@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -85,9 +86,16 @@ public class ServerJugador extends Thread{
         running = false;    //cierra el loop principal, por ende desconecta
     }
     
+    public void setSpawn(){
+        int spawnPos[] = ServerThread.getSpawnPos();
+        postX = spawnPos[0];
+        postY = spawnPos[1];
+    }
+    
     public ServerJugador(Socket socket){
         this.socket = socket;
         this.balas = new ArrayList<>();
+        setSpawn();
     }
     
     @Override
