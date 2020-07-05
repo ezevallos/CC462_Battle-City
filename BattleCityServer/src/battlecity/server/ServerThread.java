@@ -203,6 +203,11 @@ public class ServerThread extends Thread{
                 int b_postX=gamer.balas.get(i).getBala_postX();
                 int b_postY=gamer.balas.get(i).getBala_postY();
                 
+                if(mapaCaracter[b_postX][b_postY]==' '){ //Comprueba si la bala fue destruida anteriormente
+                    gamer.balas.get(i).setEstado_bala(false);
+                    a_remover.add(gamer.balas.get(i));  //La elimina
+                    continue;
+                }
                 
                 //La bala es lanzada hacia arriba
                 if(direct=='↑'){
@@ -235,6 +240,12 @@ public class ServerThread extends Thread{
                             a_remover.add(gamer.balas.get(i));
                             this.colision_X=b_postX-1;
                             this.colision_Y=b_postY;
+                            break;
+                        case '°':   //Cuando choca con otra bala
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX-1][b_postY]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
                             break;
                         default:
                             break;
@@ -272,6 +283,12 @@ public class ServerThread extends Thread{
                             this.colision_X=b_postX+1;
                             this.colision_Y=b_postY;
                             break;
+                        case '°':   //Cuando choca con otra bala
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX+1][b_postY]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
+                            break;
                         default:
                             break;
                     }
@@ -307,6 +324,12 @@ public class ServerThread extends Thread{
                             a_remover.add(gamer.balas.get(i));
                             this.colision_X=b_postX;
                             this.colision_Y=b_postY-1;
+                            break;
+                        case '°':   //Cuando choca con otra bala
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX][b_postY-1]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
                             break;
                         default:
                             break;
@@ -344,6 +367,12 @@ public class ServerThread extends Thread{
                             a_remover.add(gamer.balas.get(i));
                             this.colision_X=b_postX;
                             this.colision_Y=b_postY+1;
+                            break;
+                        case '°':   //Cuando choca con otra bala
+                            mapaCaracter[b_postX][b_postY]=' ';
+                            mapaCaracter[b_postX][b_postY+1]=' ';
+                            gamer.balas.get(i).setEstado_bala(false);
+                            a_remover.add(gamer.balas.get(i));
                             break;
                         default:
                             break;
