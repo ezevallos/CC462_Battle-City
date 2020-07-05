@@ -1,0 +1,144 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[spanish,english]{babel}
+\usepackage{indentfirst}
+\usepackage{anysize} % Soporte para el comando \marginsize
+%\marginsize{1.5cm}{1.5cm}{0.5cm}{1cm}
+\marginsize{2,5cm}{1,8cm}{1.5cm}{1,7cm}
+\usepackage[psamsfonts]{amssymb}
+
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{multicol}
+\usepackage{multirow} 
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{tocloft}
+\usepackage{listings}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand*\contentsname{Summary}
+\renewcommand{\thepage}{}
+\theoremstyle{definition}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\begin{document}
+	
+\title{Multithreaded Battle City Console Game}
+\date{5/07/2020}
+\maketitle
+
+\begin{center}
+	Students:\\
+	\vspace{5pt}
+	{\large ALEGRE IBÁÑEZ, Víctor Augusto 20130504C
+
+ZAVALETA BUENO, Romel Rolando 20120236F
+
+ZEVALLOS LABARTHE, Enrique Martín 20130384H}\\
+	Universidad Nacional de Ingenier\'ia, Facultad de Ciencias,\\
+	e-mail: victoralegre@uni.pe, romelzavaleta@uni.pe, enrique.zevallos.l@uni.pe
+	
+\end{center}
+\vspace{5pt}
+\begin{center}
+	Subject:\\
+	\vspace{5pt}
+	{\large CC462 - Concurrent \& Distributed Systems
+}\\
+	{\large Lab 2}\\
+	
+
+	
+\end{center}
+\vspace{20pt}
+\begin{abstract}
+{\small
+\hspace*{0.5cm}
+In this laboratory, we will develop the well-known game \textit{Battle City} implementing a server that listens in a loop for a client's input, in order to re-draw the field map and the position of the tank.\\\\
+\textbf{Keywords:} Threads, Concurrency, Distributed, Console, Game, Battle, City.
+}
+\end{abstract}
+
+
+
+\pagenumbering{arabic}
+
+\tableofcontents
+
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+
+\section{Introduction}
+
+\section{Theoretical Framework}
+The notion of client-server models has been used extensively throughout the gaming industry. In this particular instance, we have developed a map within a server, and several clients will connect to play. The server is in charge of updating the map with the information it receives from the clients.
+
+\section{Methodolody}
+\subsection{Calculating Pi}
+We ought to calculate the irrational number Pi using an algorithm acquainted in the early XVIII century by English mathematician John Machin. This algorithm first calculates \(\pi/4 = 4 * arctan(1/5) - arctan(1/239)\). (FRIESEN, 2015)\cite{FRIESEN2015} To calculate the arctangent of an angle in radians, we use Taylor Series, where\\
+\begin{center}\(arctan(x) = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \frac{x^9}{9} ...\)\end{center}
+To execute the code concurrently, we built a method named \emph{arctan}, that will instantiate \emph{nHilos} threads. Each thread will compute a subtotal through \emph{runnable} object \emph{ArctanThread} that is in charge of calculating the Taylor Series. We then implement a barrier to checkpoint the threads, utilizing the \emph{join()} method and proceed to add up the subtotals. Finally, we multiply this total by 4 to obtain the value of \(\pi\).
+
+\section{Results and Discussion}
+\subsection{Calculating Pi}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{pi_bench.jpg}
+    \caption{Elapsed time vs number of decimal places in pi per threads}
+    \label{fig:pi}
+\end{figure}
+
+The benefits of implementing a multithreaded approach becomes quite evident. Just looking at our example execution (found in our GitHub \href{https://github.com/ezevallos/CC462_EjemplosConcurrencia}{Repository}) where we attempt to obtain \(\pi\) to 100, 000 digits, when using four threads, our execution time is decreased to 27 \% of the total time it took to execute using only one thread. Furthermore, Figure 1 demonstrates that as we continue to increment the amount of decimal places for pi, and the amount of threads used to execute the algorithm, its asymptotic analysis resembles that of O(n).
+
+\subsection{MergeSort}
+MergeSort is based on a 'divide and conquer' technique, implemented by John Von Neumann in the year 1945. The algorithm is the following:
+\begin{enumerate}
+    \item If the length of the list is 0 or 1, it is already sorted. Otherwise, continue to the following step.
+    \item Divide the unarranged list into two sub-sets of approximately the same size.
+    \item Order each sub-list recursively applying the \emph{MergeSort} sorting algorithm.
+    \item Join both sub-sets together in one unique sorted list.
+\end{enumerate}
+Within our code, step 1 and 2 are found in recursive method \emph{MergeSort} belonging to \emph{Ordenador} class. Step 3 is found within the \emph{merge} method, in the same class. The last step is found within the \emph{finalmerge} method in the \emph{MergeSortHilos} class.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{mergesort.jpg}
+    \caption{Elapsed time vs dataset length}
+    \label{fig:mergesort}
+\end{figure}
+In the example we implemented (found in our GitHub \href{https://github.com/ezevallos/CC462_EjemplosConcurrencia}{Repository}), we used two threads defined within the \emph{main} method. The code is hardcoded for a set of numbers within the range of 0 to 1000, and these are generated randomly. The ordered list will be printed in console, line by line, followed by the execution time. \textbf{Note: A bigger set can be sorted. For this we advise commenting the print function, so as to limit the buffer overflow.} We executed a \emph{MergeSort} for a 4,000,000 data set in 528 miliseconds. 
+
+\section{Conclusions}
+The implementation of multithreading will allow us to improve time efficiency in our algorithms if it is implemented correctly. If we were to use more threads than physically available (virtual threads), this will not increase
+the performance. Instead it increases cost of parallelizing which will in turn result in a diminished performance.
+\section{Code}
+The code is in the following link \url{https://github.com/ezevallos/CC462_EjemplosConcurrencia}
+%\section{Anexo Documentación}
+
+
+%\begin{center}
+%{\large \bf Agradecimientos}
+%\end{center}
+%Los autores agradecen a las autoridades de la Facultad de Ciencias de la Universidad Nacional de 
+%Ingenier\'{\i}a por su apoyo.
+%%\begin{center}
+%%{\large \bf Apendice: }
+%%\end{center}
+
+\vspace{20pt}
+\hrule
+\vspace{10pt}
+
+\nocite{*}
+%\bibliographystyle{apacite}
+\bibliographystyle{plain}
+\bibliography{Bibliog}
+\addcontentsline{toc}{chapter}{Bibliografía}
+
+%------------------------------------- References --------------------
+\end{document}
