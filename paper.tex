@@ -101,6 +101,17 @@ The main thread is in charge of the GUI and event handling from keystrokes.
 The other thread will read the output from the server, either map updates or an "eliminated" notification.
 
 \section{Methodolody}
+The implementation is made in our main class, which instantiates the \textit{ServerThread} class in a \textit{server} object, and calls its methods \textit{start} and \textit{enviarUpdates}. 
+This class inherits from the \textit{Thread} class and so it implements a runnable method when \textit{start} is called. 
+In this case, we overrode the \textit{run} method to run an infinite loop and wait for new connections. 
+After establishing a new connection, a player object named \textit{jugador} is instantiated using the class \textit{ServerJugador} which also inherits from the \textit{Thread} class. 
+This new object is added to the list \textit{jugadores} and then \textit{jugador.start()} will call its runnable method. 
+The \textit{run} method is overridden to establish two data streams, input and output. 
+We use a \textit{while} loop that checks if the \textit{running} attribute is still \textit{true}. 
+This loop keeps on reading the input stream if so, as well as establishing the object's movement and determining if shots were fired. 
+If the \textit{key} it receives from the input stream is \textit{'x'}, then it will instantiate a bullet (\textit{bala}) object.
+
+
 \subsection{Calculating Pi}
 We ought to calculate the irrational number Pi using an algorithm acquainted in the early XVIII century by English mathematician John Machin. This algorithm first calculates \(\pi/4 = 4 * arctan(1/5) - arctan(1/239)\). (FRIESEN, 2015)\cite{FRIESEN2015} To calculate the arctangent of an angle in radians, we use Taylor Series, where\\
 \begin{center}\(arctan(x) = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \frac{x^9}{9} ...\)\end{center}
