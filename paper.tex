@@ -58,7 +58,7 @@ ZEVALLOS LABARTHE, Enrique Martín 20130384H}\\
 \begin{abstract}
 {\small
 \hspace*{0.5cm}
-	In this laboratory, we will develop the well-known game \textit{Battle City} implementing a client-server model. We opted for a distributed and concurrent approach where both server and client implement threads to optimize performance. The server will continuosly listen for new connections and will be in charge of most of the processing needed. Clients will only have to worry about the GUI and after establishing the connection with the server, send keystrokes and receive the data needed to re-draw the map and the tanks (other clients and themselves) within.\\\\
+	In this laboratory, we will develop the well-known game \textit{Battle City} implementing a client-server model. We opted for a distributed and concurrent approach where both server and client implement threads to optimize performance. The server will continuously listen for new connections and will be in charge of most of the processing needed. Clients will only have to worry about the GUI and after establishing the connection with the server, send keystrokes and receive the data needed to re-draw the map and the tanks (other clients and themselves) within.\\\\
 \textbf{Keywords:} Threads, Concurrency, Distributed, Console, Game, Battle, City.
 }
 \end{abstract}
@@ -96,7 +96,9 @@ Additionally, players will have a list of \textit{bullet} objects.
 Both players and bullets will have attributes of position in a 2D "battle ground". 
 The instantiated server will iterate over all player objects to determine their direction and movements. 
 If the coordinates of a bullet are the same as those of a player, then this player will be eliminated. 
-
+For the client, only two threads are implemented. 
+The main thread is in charge of the GUI and event handling from keystrokes. 
+The other thread will read the output from the server, either map updates or an "eliminated" notification.
 
 \section{Methodolody}
 \subsection{Calculating Pi}
