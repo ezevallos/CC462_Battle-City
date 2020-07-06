@@ -125,7 +125,7 @@ It will also check for bullets, determining its movements and collisions.
 If the object it collides with is a 'tank', the collision coordinates are modified and thus the condition in the next line of code will verify.
 After the player is passed to the method \textit{CoreJuego}, and the physics of the game is implemented, we use an \textit{if} statement to determine if a bullet collided with a 'tank', and proceed to add said player to the \textit{gamer\_eliminado} list of objects. 
 The collision coordinates are then set back to (0,0). 
-Then, after exiting the if condition the method \textit{enviar} is called for each player, and the \textit{for} loop finishes. 
+Then, after exiting the if condition the method \textit{enviar} is called for each player, and the \textit{for} loop finishes. \\
 Finally, we iterate over the \textit{gamer\_eliminado} list and call the method \textit{notificaPerdio} to send the notification \textit{"pierdes"} through the output stream, and set the \textit{running} attribute of the player to \textit{false}. 
 All disqualified players are remove and the thread sleeps for an additional 100 milliseconds.
 The last class we ought to mention is \textit{CargarMapa}. 
