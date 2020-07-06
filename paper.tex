@@ -113,7 +113,19 @@ This value is modified to be set as \textit{false} when the \textit{notificaPerd
 This loop keeps on reading the input stream if \textit{running} is set to \textit{true}, as well as establishing the object's movement and determining if shots were fired. 
 If the \textit{key} it receives from the input stream is \textit{'x'}, then it will instantiate a bullet (\textit{bala}) object. 
 This bullet will receive its initial coordinates from the player that instantiated it, its state is set to true and it is added to the \textit{balas} list of objects. 
-
+Another method of the \textit{ServerJugador} class is \textit{enviar}, which sends a message in UTF-8 encoding through the output stream. 
+This method will be called from the \textit{server} object to send the updated map to the client. 
+After the player is instantiated and initialized in the server's runnable method, the method \textit{enviarUpdates} is called. 
+This method creates a thread and calls its runnable method where an infinite loop updates the total amount of players and creates a list of eliminated players. 
+It sleeps for 100 milliseconds, then prints the number of players and coordinates of a collision. 
+If there were no collisions, the coordinates will be (0,0).
+Then a \textit{for} loop iterates over the list of players and for each one of them, it will call the \textit{CoreJuego} method which modifies the orientation and position based on the \textit{direccion} attribute of the player. 
+It will also check for bullets, determining its movements and collisions. 
+If the object it collides with is a 'tank', the collision coordinates are modified and thus the condition in the next line of code will verify.
+After the player is passed to the method \textit{CoreJuego}, and the physics of the game is implemented, we use an \textit{if} statement to determine if a bullet collided with a 'tank', and proceed to add said player to the \textit{gamer\_eliminado} list of objects. 
+The collision coordinates are then set back to (0,0). 
+Then, after exiting the if condition the method \textit{enviar} is called for each player, and the \textit{for} loop finishes. 
+Finally, we iterate over the \textit{gamer\_eliminado} list and call the method \textit{notificaPerdio} to send the notification \textit{"pierdes"} through the output stream, and set the \textit{running} attribute of the player to \textit{false}.
 
 \subsection{The Client}
 We ought to calculate the irrational number Pi using an algorithm acquainted in the early XVIII century by English mathematician John Machin. This algorithm first calculates \(\pi/4 = 4 * arctan(1/5) - arctan(1/239)\). (FRIESEN, 2015)\cite{FRIESEN2015} To calculate the arctangent of an angle in radians, we use Taylor Series, where\\

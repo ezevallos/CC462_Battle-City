@@ -80,7 +80,7 @@ public class ServerThread extends Thread{
                     } catch (InterruptedException ex) {}
                     total = jugadores.size();
                     System.out.println("total: "+total);
-                    System.out.println("colicion X:"+colision_X+" Y:"+colision_Y);
+                    System.out.println("colision X:"+colision_X+" Y:"+colision_Y);
                     for(int i = 0; i < total; i++){
                         try {
                             CoreJuego(jugadores.get(i));
