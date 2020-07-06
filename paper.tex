@@ -105,21 +105,21 @@ The other thread will read the output from the server, either map updates or an 
 The server implementation is made in our main class, which instantiates the \textit{ServerThread} class in a \textit{server} object, and calls its methods \textit{start} and \textit{enviarUpdates}. 
 This class inherits from the \textit{Thread} class and so it implements a runnable method when \textit{start} is called. 
 In this case, we overrode the \textit{run} method to run an infinite loop and wait for new connections. 
-After establishing a new connection, a player object named \textit{jugador} is instantiated using the class \textit{ServerJugador} which also inherits from the \textit{Thread} class. 
+After establishing a new connection, a player object named \textit{jugador} is instantiated using the class \textit{ServerJugador} which also inherits from the \textit{Thread} class. \\
 The spawning position of the new object is generated randomly. 
 This new object is added to the list \textit{jugadores} and then \textit{jugador.start()} will call its runnable method. 
 The \textit{run} method is overridden to establish two data streams, input and output. 
 We use a \textit{while} loop that checks if the \textit{running} attribute is still \textit{true}. 
-This value is modified to be set as \textit{false} when the \textit{notificaPerdido} method is called, after the player object (\textit{jugador}) is added to the \textit{gamer\_eliminado} list, when its position is the same as that of a bullet. 
+This value is modified to be set as \textit{false} when the \textit{notificaPerdido} method is called, after the player object (\textit{jugador}) is added to the \textit{gamer\_eliminado} list, when its position is the same as that of a bullet. \\
 This loop keeps on reading the input stream if \textit{running} is set to \textit{true}, as well as establishing the object's movement and determining if shots were fired. 
 If the \textit{key} it receives from the input stream is \textit{'x'}, then it will instantiate a bullet (\textit{bala}) object. 
-This bullet will receive its initial coordinates from the player that instantiated it, its state is set to true and it is added to the \textit{balas} list of objects. 
+This bullet will receive its initial coordinates from the player that instantiated it, its state is set to true and it is added to the \textit{balas} list of objects. \\
 Another method of the \textit{ServerJugador} class is \textit{enviar}, which sends a message in UTF-8 encoding through the output stream. 
 This method will be called from the \textit{server} object to send the updated map to the client. 
 After the player is instantiated and initialized in the server's runnable method, the method \textit{enviarUpdates} is called. 
 This method creates a thread and calls its runnable method where an infinite loop updates the total amount of players and creates a list of eliminated players. 
 It sleeps for 100 milliseconds, then prints the number of players and coordinates of a collision. 
-If there were no collisions, the coordinates will be (0,0).
+If there were no collisions, the coordinates will be (0,0). \\
 Then a \textit{for} loop iterates over the list of players and for each one of them, it will call the \textit{CoreJuego} method which modifies the orientation and position based on the \textit{direccion} attribute of the player. 
 It will also check for bullets, determining its movements and collisions. 
 If the object it collides with is a 'tank', the collision coordinates are modified and thus the condition in the next line of code will verify.
