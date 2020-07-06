@@ -133,6 +133,15 @@ This class will create a 16x32 matrix reading each string of the \textit{mapa.tx
 If any exception should be thrown, the appropriate \textit{try} and \textit{catch} statements are in place. 
 A \textit{while} and a \textit{for} loop are implemented to iterate over the whole text file and populate the map matrix.
 \subsection{The Client}
+As mentioned, the client will run two threads. 
+One of them will be in charge of the GUI and event handling from keystrokes. 
+The GUI is implemented using the Swing library from Java. 
+An object called \textit{Marco} which inherits from JFrame is instantiated where the width, height and title are already specified. 
+Then several methods are call to set the default close operation to exit on close, set the frame to visible and non-resizable.
+Another object called \textit{inicio} is instantiated from the class \textit{InicioPanel} which inherits from JPanel. 
+This class has the attributes of host and port as JTextFields and implements an ActionListener for the \textit{Jugar!!} button. 
+When this button is pressed the client will connect to the specified host, at the specified port, calling the \textit{jugar} method. 
+This method creates the object \textit{juego} using the class \textit{JuegoPanel} which also inherits from the class JPanel. 
 
 \section{Results and Discussion}
 \subsection{Calculating Pi}
