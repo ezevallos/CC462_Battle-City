@@ -58,7 +58,7 @@ ZEVALLOS LABARTHE, Enrique Martín 20130384H}\\
 \begin{abstract}
 {\small
 \hspace*{0.5cm}
-In this laboratory, we will develop the well-known game \textit{Battle City} implementing a server that listens in a loop for a client's input, in order to re-draw the field map and the position of the tanks (clients).\\\\
+	In this laboratory, we will develop the well-known game \textit{Battle City} implementing a client-server model. We opted for a distributed and concurrent approach where both server and client implement threads to optimize performance. The server will continuosly listen for new connections and will be in charge of most of the processing needed. Clients will only have to worry about the GUI and after establishing the connection with the server, send keystrokes and receive the data needed to re-draw the map and the tanks (other clients and themselves) within.\\\\
 \textbf{Keywords:} Threads, Concurrency, Distributed, Console, Game, Battle, City.
 }
 \end{abstract}
@@ -74,8 +74,10 @@ In this laboratory, we will develop the well-known game \textit{Battle City} imp
 \vspace{10pt}
 
 \section{Introduction}
-The notion of client-server models has been used extensively throughout the gaming industry. This allows distributed processing of the payload, such that the client will only have to execute a lightweight version of the program. 
-The vast majority of the processing is done by the server, the clients are only in charge of sending the orders for the server to execute. 
+The notion of client-server models has been used extensively throughout the gaming industry. 
+This allows distributed processing of the payload, such that the client will only have to execute a lightweight version of the program. 
+The vast majority of the processing is done by the server. 
+Clients are only in charge of sending orders for the server to execute and . 
 In this particular instance, we have developed a game within a server, to which several clients will connect to play. 
 The server is in charge of updating the map with the information it receives from the clients. 
 Clients will conect to the server and send keystrokes in order to shoot and move within the map. 
@@ -83,7 +85,7 @@ This way, the client can run in a wider variety of hardware choices with similar
 
 
 \section{Theoretical Framework}
-For the implementation of the game, we are using
+For the implementation of the game, we are using a multithreaded approach in the 
 
 \section{Methodolody}
 \subsection{Calculating Pi}
