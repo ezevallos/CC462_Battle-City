@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.6.21)  6 JUL 2020 08:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.6.21)  6 JUL 2020 08:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -547,56 +547,97 @@ Missing character: There is no ­ in font cmr10!
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.112 ... is added to the \textit{gamer_eliminado}
+                                                   list, when its position i...
 
-LaTeX Warning: Citation `FRIESEN2015' on page 2 undefined on input line 116.
+? 
+! Extra }, or forgotten $.
+<recently read> \egroup 
+                        
+l.112 ... is added to the \textit{gamer_eliminado}
+                                                   list, when its position i...
+
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.116 
+      
+? 
+
+Overfull \hbox (1440.9835pt too wide) in paragraph at lines 105--116
+\OT1/cmr/m/n/10 is added to the \OT1/cmr/m/it/10 gamer$[]\OML/cmm/m/it/10 limin
+adolist; whenitspositionisthesameasthatofabullet:Thisloopkeepsonreadingtheinput
+streamif[]issetto[]; aswellasestablishingtheobject[]smovementanddeterminingifsh
+otswerefired:Ifthe[]itreceivesfromtheinputstreamis[]; thenitwillinstantiateabul
+let\OT1/cmr/m/n/10 ([])\OML/cmm/m/it/10 object:Thisbulletwillreceiveitsinitialc
+oordinatesfromtheplayerthatinstantiatedit; itsstateissettotrueanditisaddedtothe
+[]listofobjects:$ 
+ []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 116--117
+LaTeX Warning: Citation `FRIESEN2015' on page 2 undefined on input line 119.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
 
  []
 
 [2]
 No file paper.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 160.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 161.
 [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 160.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 161.
  (./paper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 160.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 160.
-Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 8DC0B3E26F4D2248F2B3108E05677EE7;524.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 161.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 161.
 
+
+Package rerunfilecheck Warning: File `paper.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `paper.out':
+(rerunfilecheck)             Before: 8DC0B3E26F4D2248F2B3108E05677EE7;524
+(rerunfilecheck)             After:  9F3CA1C8B0C8A14D4D4E6C62CFD3F131;580.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 160.
- ) 
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 161.
+ )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 112 ({)
+### bottom level 
 Here is how much of TeX's memory you used:
- 9208 strings out of 494923
- 136427 string characters out of 6180742
+ 9214 strings out of 494923
+ 136500 string characters out of 6180742
  234270 words of memory out of 5000000
- 12391 multiletter control sequences out of 15000+600000
- 12969 words of font info for 50 fonts, out of 8000000 for 9000
+ 12394 multiletter control sequences out of 15000+600000
+ 14026 words of font info for 53 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 36i,6n,38p,633b,336s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on paper.pdf (3 pages, 192371 bytes).
+ 36i,6n,38p,633b,408s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
+Output written on paper.pdf (3 pages, 196683 bytes).
 PDF statistics:
- 138 PDF objects out of 1000 (max. 8388607)
- 116 compressed objects within 2 object streams
- 13 named destinations out of 1000 (max. 500000)
+ 139 PDF objects out of 1000 (max. 8388607)
+ 117 compressed objects within 2 object streams
+ 14 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

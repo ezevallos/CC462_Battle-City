@@ -101,21 +101,22 @@ The main thread is in charge of the GUI and event handling from keystrokes.
 The other thread will read the output from the server, either map updates or an "eliminated" notification.
 
 \section{Methodolody}
-The implementation is made in our main class, which instantiates the \textit{ServerThread} class in a \textit{server} object, and calls its methods \textit{start} and \textit{enviarUpdates}. 
+\subsection{The Server}
+The server implementation is made in our main class, which instantiates the \textit{ServerThread} class in a \textit{server} object, and calls its methods \textit{start} and \textit{enviarUpdates}. 
 This class inherits from the \textit{Thread} class and so it implements a runnable method when \textit{start} is called. 
 In this case, we overrode the \textit{run} method to run an infinite loop and wait for new connections. 
 After establishing a new connection, a player object named \textit{jugador} is instantiated using the class \textit{ServerJugador} which also inherits from the \textit{Thread} class. 
 This new object is added to the list \textit{jugadores} and then \textit{jugador.start()} will call its runnable method. 
 The \textit{run} method is overridden to establish two data streams, input and output. 
 We use a \textit{while} loop that checks if the \textit{running} attribute is still \textit{true}. 
-This loop keeps on reading the input stream if so, as well as establishing the object's movement and determining if shots were fired. 
-If the \textit{key} it receives from the input stream is \textit{'x'}, then it will instantiate a bullet (\textit{bala}) object.
+This value is modified to be set as \textit{false} when the \textit{notificaPerdido} method is called, after the player object (\textit{jugador}) is added to the \textit{gamer_eliminado} list, when its position is the same as that of a bullet. 
+This loop keeps on reading the input stream if \textit{running} is set to \textit{true}, as well as establishing the object's movement and determining if shots were fired. 
+If the \textit{key} it receives from the input stream is \textit{'x'}, then it will instantiate a bullet (\textit{bala}) object. 
+This bullet will receive its initial coordinates from the player that instantiated it, its state is set to true and it is added to the \textit{balas} list of objects. 
 
 
-\subsection{Calculating Pi}
+\subsection{The Client}
 We ought to calculate the irrational number Pi using an algorithm acquainted in the early XVIII century by English mathematician John Machin. This algorithm first calculates \(\pi/4 = 4 * arctan(1/5) - arctan(1/239)\). (FRIESEN, 2015)\cite{FRIESEN2015} To calculate the arctangent of an angle in radians, we use Taylor Series, where\\
-\begin{center}\(arctan(x) = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \frac{x^9}{9} ...\)\end{center}
-To execute the code concurrently, we built a method named \emph{arctan}, that will instantiate \emph{nHilos} threads. Each thread will compute a subtotal through \emph{runnable} object \emph{ArctanThread} that is in charge of calculating the Taylor Series. We then implement a barrier to checkpoint the threads, utilizing the \emph{join()} method and proceed to add up the subtotals. Finally, we multiply this total by 4 to obtain the value of \(\pi\).
 
 \section{Results and Discussion}
 \subsection{Calculating Pi}
@@ -127,7 +128,7 @@ MergeSort is based on a 'divide and conquer' technique, implemented by John Von 
 
 Within our code, step 1 and 2 are found in recursive method \emph{MergeSort} belonging to \emph{Ordenador} class. Step 3 is found within the \emph{merge} method, in the same class. The last step is found within the \emph{finalmerge} method in the \emph{MergeSortHilos} class.
 
-In the example we implemented (found in our GitHub \href{https://github.com/ezevallos/CC462_EjemplosConcurrencia}{Repository}), we used two threads defined within the \emph{main} method. The code is hardcoded for a set of numbers within the range of 0 to 1000, and these are generated randomly. The ordered list will be printed in console, line by line, followed by the execution time. \textbf{Note: A bigger set can be sorted. For this we advise commenting the print function, so as to limit the buffer overflow.} We executed a \emph{MergeSort} for a 4,000,000 data set in 528 miliseconds. 
+In the example we implemented (found in our GitHub \href{https://github.com/ezevallos/CC462_Battle-City}{Repository}), we used two threads defined within the \emph{main} method. The code is hardcoded for a set of numbers within the range of 0 to 1000, and these are generated randomly. The ordered list will be printed in console, line by line, followed by the execution time. \textbf{Note: A bigger set can be sorted. For this we advise commenting the print function, so as to limit the buffer overflow.} We executed a \emph{MergeSort} for a 4,000,000 data set in 528 miliseconds. 
 
 \section{Conclusions}
 The implementation of multithreading will allow us to improve time efficiency in our algorithms if it is implemented correctly. If we were to use more threads than physically available (virtual threads), this will not increase
