@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.7.6)  6 JUL 2020 23:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.7.6)  7 JUL 2020 00:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -536,20 +536,21 @@ Missing character: There is no ­ in font cmr10!
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-No file paper.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 191.
 [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 191.
+No file paper.bbl.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 195.
+[4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 195.
  (./paper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 191.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 191.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 195.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 195.
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: B65A9AF281AC0778A7918F4BFB1266BF;457.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 191.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 195.
  ) 
 Here is how much of TeX's memory you used:
- 9559 strings out of 494861
- 141362 string characters out of 6178805
+ 9560 strings out of 494861
+ 141368 string characters out of 6178805
  241624 words of memory out of 5000000
  12748 multiletter control sequences out of 15000+600000
  12969 words of font info for 50 fonts, out of 8000000 for 9000
@@ -565,10 +566,10 @@ ype1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt10.pfb>
-Output written on paper.pdf (3 pages, 152398 bytes).
+Output written on paper.pdf (4 pages, 152629 bytes).
 PDF statistics:
- 110 PDF objects out of 1000 (max. 8388607)
- 94 compressed objects within 1 object stream
- 12 named destinations out of 1000 (max. 500000)
+ 115 PDF objects out of 1000 (max. 8388607)
+ 98 compressed objects within 1 object stream
+ 13 named destinations out of 1000 (max. 500000)
  73 words of extra memory for PDF output out of 10000 (max. 10000000)
 

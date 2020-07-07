@@ -156,15 +156,19 @@ This piece of code is the reason why in the client you use the space-bar to shoo
 Other methods in JuegoPanel will be in charge of notifying the player of possible errors or losing the game.
 
 \section{Results and Discussion}
+After testing the game with several clients connecting simultaneously to the deployed server code in a cloud based service (AWS), 12 players were able to play within the same field with very little lag time. 
+Some issues we encountered had to do with the bullets killing the tanks that fired them, and stopping if the tank moved in the same direction. 
+The latter is due to the fact that when created, the map has to be redrawn with the tank inside or otherwise the tank will disappear due to the bullet it just shot.
 
-
-In the example we implemented (found in our GitHub \href{https://github.com/ezevallos/CC462_Battle-City}{Repository}), we 
+In the example we implemented (found in our GitHub \href{https://github.com/ezevallos/CC462_Battle-City}{Repository}), we include both source code for the classes implemented, as well as the executable jars for the user to run.
 
 \section{Conclusions}
-The implementation of multithreading will allow us to improve time efficiency in our algorithms if it is implemented correctly. If we were to use more threads than physically available (virtual threads), this will not increase
-the performance. Instead it increases cost of parallelizing which will in turn result in a diminished performance.
+The implementation of multithreading will allow us to improve the performance of the BattleCity game. 
+The use of a distributed client-server setup allows lightweight client-side applications. 
+This makes the solution scalable, if more computational power is needed, the resources within the web service are scaled up to meet the requirements. 
+
 \section{Code}
-The code is in the following link \url{https://github.com/ezevallos/CC462_EjemplosConcurrencia}
+The code is in the following link \url{https://github.com/ezevallos/CC462_Battle-City}
 %\section{Anexo Documentación}
 
 
