@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.7.6)  6 JUL 2020 22:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.7.6)  6 JUL 2020 22:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -521,14 +521,6 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 LaTeX Warning: No \author given.
 
-Missing character: There is no Ã in font cmr12!
-Missing character: There is no  in font cmr12!
-Missing character: There is no Ã in font cmr12!
-Missing character: There is no ‘ in font cmr12!
-Missing character: There is no Ã in font cmr12!
-Missing character: There is no ­ in font cmr12!
-Missing character: There is no Ã in font cmr12!
-Missing character: There is no ­ in font cmr12!
 
 Underfull \hbox (badness 10000) in paragraph at lines 60--64
 
@@ -556,10 +548,10 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 191.
  ) 
 Here is how much of TeX's memory you used:
- 9558 strings out of 494861
- 141354 string characters out of 6178805
+ 9560 strings out of 494861
+ 141370 string characters out of 6178805
  241624 words of memory out of 5000000
- 12747 multiletter control sequences out of 15000+600000
+ 12749 multiletter control sequences out of 15000+600000
  12969 words of font info for 50 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
  36i,6n,38p,596b,359s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -573,7 +565,7 @@ ype1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt10.pfb>
-Output written on paper.pdf (3 pages, 151990 bytes).
+Output written on paper.pdf (3 pages, 152272 bytes).
 PDF statistics:
  110 PDF objects out of 1000 (max. 8388607)
  94 compressed objects within 1 object stream
