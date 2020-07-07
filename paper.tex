@@ -137,20 +137,28 @@ As mentioned, the client will run two threads.
 One of them will be in charge of the GUI and event handling from keystrokes. 
 The GUI is implemented using the Swing library from Java. 
 An object called \textit{Marco} which inherits from JFrame is instantiated where the width, height and title are already specified. 
-Then several methods are call to set the default close operation to exit on close, set the frame to visible and non-resizable.
+Then several methods are called to set the default close operation to exit on close, set the frame to visible and non-resizable.
 Another object called \textit{inicio} is instantiated from the class \textit{InicioPanel} which inherits from JPanel. 
 This class has the attributes of host and port as JTextFields and implements an ActionListener for the \textit{Jugar!!} button. 
 When this button is pressed the client will connect to the specified host, at the specified port, calling the \textit{jugar} method. 
-This method creates the object \textit{juego} using the class \textit{JuegoPanel} which also inherits from the class JPanel. 
+This method creates the object \textit{juego} using the class \textit{JuegoPanel} which also inherits from the class JPanel. \\
+Then the \textit{startGame} method from the \textit{juego} object is called, and within this piece of code an object called \textit{socketThread} is instantiated using the \textit{SocketThread} class. 
+This class inherits from the Thread class, and uses network sockets to connect to the server. 
+It will also have input and output datastreams, and a \textit{running} attribute set to true initially. 
+The thread will implement a runnable method with a \textit{while} loop that verifies if the message sent from the server is \textit{pierdes}. 
+This message is read using the \textit{leer} method where a conditional statement waits for the specific message telling the client it lost, in order to activate the listener's \textit{notificaPerdio} method. 
+If so, the listener will set the value of \textit{running} to false, and the loop will stop running.
+After this \textit{if} statement, the \textit{repintar} method is called which essentially is a \textit{setText} command to re-draw the playing field. 
+If we were to exit the \textit{while} loop, the runnable implements \textit{try}, \textit{catch} and \textit{finally} clauses to print out error messages in case the connection is lost and the socket ought to be closed. 
+The output stream will have a method called \textit{enviarOrden} that will be called from the JuegoPanel class.\\
+After the game is started, a Key Listener will listen to keystrokes from the client and send them through the output stream. It uses the method named \textit{mandarOrden} to perform a \textit{switch-case} specifying the possible commands that the client can use. 
+This piece of code is the reason why in the client you use the space-bar to shoot, but the server interprets this as an 'x' character, since it is easier than implementing the use of the empty character ' '. 
+Other methods in JuegoPanel will be in charge of notifying the player of possible errors or losing the game.
 
 \section{Results and Discussion}
-\subsection{Calculating Pi}
 
 
-\subsection{MergeSort}
-
-
-In the example we implemented (found in our GitHub \href{https://github.com/ezevallos/CC462_Battle-City}{Repository}), we 
+In the example we implemented (found in our GitHub \href{https://github.com/ezevallos/CC462\_Battle-City}{Repository}), we 
 
 \section{Conclusions}
 The implementation of multithreading will allow us to improve time efficiency in our algorithms if it is implemented correctly. If we were to use more threads than physically available (virtual threads), this will not increase
