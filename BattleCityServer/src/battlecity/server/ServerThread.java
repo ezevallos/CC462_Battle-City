@@ -23,7 +23,7 @@ public class ServerThread extends Thread{
     int colision_X=0;
     int colision_Y=0;
     private List<ServerJugador> jugadores;
-    private static int[][] spawningArea = {{1,1},{1,30},{14,1},{14,30}};
+    private static int[][] spawningArea = {{1,1},{1,CargarMapa.SIZE-2},{CargarMapa.SIZE-2,1},{CargarMapa.SIZE-2,CargarMapa.SIZE-2}};
     
     private CargarMapa mapaInicial = new CargarMapa();
     char[][] mapaCaracter = mapaInicial.getMatrizMapa();
@@ -32,8 +32,8 @@ public class ServerThread extends Thread{
     String transformarCadena(char[][] array){
         String cadena="";
         
-        for (int i=0;i<16;i++){
-            for(int j=0;j<32;j++){
+        for (int i=0;i<CargarMapa.SIZE;i++){
+            for(int j=0;j<CargarMapa.SIZE;j++){
                 cadena=cadena+array[i][j];
             }
             cadena=cadena+"\n";

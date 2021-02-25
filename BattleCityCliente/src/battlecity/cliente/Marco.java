@@ -12,23 +12,23 @@ import javax.swing.JFrame;
  * @author Victor
  */
 public class Marco extends JFrame implements InicioPanel.EventListener{
-    public static int ALTURA = 500;
-    public static int ANCHO = 500;
+    public static int ALTURA = 780;
+    public static int ANCHO = 720;
     public static String TITULO = "Battle City";
     
     public Marco(){
-        setSize(ANCHO, ALTURA);
-        setTitle(TITULO);
+        super.setSize(ANCHO, ALTURA);
+        super.setTitle(TITULO);
         
         InicioPanel inicio = new InicioPanel(this);
-        setContentPane(inicio);
+        super.setContentPane(inicio);
     }
 
     @Override
     public void jugar(String host, int puerto) {
         System.out.println("Host: "+host+"\nPuerto: "+puerto);
         
-        JuegoPanel juego = new JuegoPanel(host,puerto,this);
+        JuegoPanel juego = new JuegoPanel(host,puerto,ANCHO,ALTURA,this);
         setContentPane(juego);
         revalidate();
         requestFocusInWindow();

@@ -18,8 +18,8 @@ import java.util.logging.Logger;
  * @author AsistenteBI
  */
 public class CargarMapa {
-    
-    char[][] MatrizMapa = new char [16][32];
+    public static int SIZE = 24;
+    char[][] MatrizMapa = new char [SIZE][SIZE];
 
     public char[][] getMatrizMapa() {
         return MatrizMapa;
@@ -32,7 +32,7 @@ public class CargarMapa {
     
     
     CargarMapa(){
-        //File file = new File("E:\\concurrentes\\mapa.txt");
+        //File file = new File("E:\\concurrentes\\CC462_Battle-City\\mapa.txt");
         File file = new File("mapa.txt");
         try {
             Scanner sc = new Scanner(file);
